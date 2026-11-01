@@ -1,6 +1,8 @@
 // BookRNG badge rules. Each rule is a deterministic predicate over known fields: a value the catalog does not have never matches.
 // test(m, poolDate) and evidence(m, poolDate) read the prepared member from prep().
 
+export const RULESET = '2'; // 2: common band badges added so no record earns nothing
+
 export const norm = (s) => s.normalize('NFKC').toLowerCase();
 
 const tokens = (s) => s.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)); // whitespace-separated words; bare punctuation is not a word
@@ -57,4 +59,5 @@ export const RULES = [
   { id: 'history-class', name: 'History Class', family: 'Library class', rule: 'Library of Congress class D, E or F (history)', test: (m) => m.loc !== null && 'DEF'.includes(m.loc), evidence: (m) => `${named(m)} is in LoC class ${m.loc}` },
   { id: 'philosophy-class', name: 'Philosophy Class', family: 'Library class', rule: 'Library of Congress class B (philosophy, psychology, religion)', test: (m) => m.loc === 'B', evidence: (m) => `${named(m)} is in LoC class B` },
   { id: 'science-class', name: 'Science Class', family: 'Library class', rule: 'Library of Congress class Q, R, S or T (science, medicine, agriculture, technology)', test: (m) => m.loc !== null && 'QRST'.includes(m.loc), evidence: (m) => `${named(m)} is in LoC class ${m.loc}` },
+  { id: 'regular-addition', name: 'Regular Addition', family: 'Added to Gutenberg', rule: 'Added to Project Gutenberg from 1997 through 2019', test: (m) => m.issuedYear !== null && m.issuedYear >= 1997 && m.issuedYear <= 2019, evidence: (m) => `${named(m)} was added to Gutenberg in ${m.issuedYear}` },
 ];

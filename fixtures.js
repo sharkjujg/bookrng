@@ -34,6 +34,7 @@ export const cases = [
   ['history-class', { loc: 'D' }, true], ['history-class', { loc: 'F' }, true], ['history-class', { loc: 'd' }, true], ['history-class', { loc: 'P' }, false], ['history-class', { loc: null }, false],
   ['philosophy-class', { loc: 'B' }, true], ['philosophy-class', { loc: 'P' }, false],
   ['science-class', { loc: 'Q' }, true], ['science-class', { loc: 'T' }, true], ['science-class', { loc: 'P' }, false], ['science-class', { loc: undefined }, false],
+  ['regular-addition', { issued: 1997 }, true], ['regular-addition', { issued: 2019 }, true], ['regular-addition', { issued: 1996 }, false], ['regular-addition', { issued: 2020 }, false], ['regular-addition', { issued: null }, false],
 ];
 
 export function poolChecks(raw, pool, ok) {
